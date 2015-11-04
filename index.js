@@ -22,15 +22,18 @@ MongoClient.connect(url, function (err, db) {
       });
     }, function () {
 
-      async.forEach(randomFetchElasticUrls, function (url, cb) {
-        var start = new Date().valueOf();
+
+      console.time('startall');
+      async.eachLimit(randomFetchElasticUrls, 1, function (url, cb) {
+        console.time(url);
         // elastic-url has unique index
         entries.find({'elastic-url': url}).toArray(function (err, doc) {
+          console.timeEnd(url);
           if (err) { throw err; }
-           console.log('lookup time MS:', ((new Date().valueOf()) - start));
           cb();
         });
       }, function () {
+        console.timeEnd('startall');
         process.exit(0);
       });
 
