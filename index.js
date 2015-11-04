@@ -24,6 +24,7 @@ MongoClient.connect(url, function (err, db) {
 
       async.forEach(randomFetchElasticUrls, function (url, cb) {
         var start = new Date().valueOf();
+        // elastic-url has unique index
         entries.find({'elastic-url': url}).toArray(function (err, doc) {
           if (err) { throw err; }
            console.log('lookup time MS:', ((new Date().valueOf()) - start));
