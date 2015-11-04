@@ -36,16 +36,4 @@ MongoClient.connect(url, function (err, db) {
 
     });
   });
-  /*
-  async.times(numDocuments, function (n, cb) {
-    console.log('insert', count);
-    count++;
-    entries.insert({
-      "elastic-url": uuid.v4()
-    }, cb);
-  }, function () {
-    console.log('done');
-    process.exit();
-  });
-  */
 });
