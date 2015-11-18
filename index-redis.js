@@ -19,6 +19,7 @@ client.hkeys('navi', function (err, res) {
       // elastic-url has unique index
       client.hget('navi', url, function (err, res) {
         if (err) throw err;
+        var jsonRes = JSON.parse(res);
         console.timeEnd(url);
         cb();
       });
