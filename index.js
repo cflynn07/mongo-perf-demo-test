@@ -10,7 +10,7 @@ MongoClient.connect(url, function (err, db) {
 
   entries.count(function (err, n) {
     var randomFetchElasticUrls = [];
-    async.times(1000, function (n, cb) {
+    async.timesSeries(30, function (n, cb) {
       var nthDocument = Math.floor(Math.random()*n);
       entries.find({}, {
         limit: 1,
@@ -21,8 +21,7 @@ MongoClient.connect(url, function (err, db) {
         cb();
       });
     }, function () {
-
-
+      console.log('-----------------------------');
       console.time('startall');
       async.eachLimit(randomFetchElasticUrls, 1, function (url, cb) {
         console.time(url);
@@ -36,7 +35,6 @@ MongoClient.connect(url, function (err, db) {
         console.timeEnd('startall');
         process.exit(0);
       });
-
     });
   });
 });
