@@ -1,7 +1,7 @@
 # mongo-perf-demo-test
 
 ## Quick test of redis hash && mongodb unique-indexed collection fetch (seeded with 110,000 records)
-
+#### Both lookups are O(1) time complex operations
 ```
 /w/mongo-perf-demo-test git:master ❯❯❯ node index.js
 connect null
